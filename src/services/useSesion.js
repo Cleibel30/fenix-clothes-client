@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useRouteApi } from './useRouteApi';
 
 export const useSesion = () => {
- const api = import.meta.env.VITE_API;
+  const { api } = useRouteApi()
 
   //Peticion de inicio de sesion
 

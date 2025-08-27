@@ -2,7 +2,7 @@ import axios from "axios";
 import { useRouteApi } from "./useRouteApi";
 
 export const useIa = () => {
-  const api = import.meta.env.VITE_API;
+  const {api} = useRouteApi()
   
     const getIaResponse = async (setresponseApi, product_id, message) => {
         const body = { message }

@@ -3,7 +3,7 @@ import axios from 'axios'
 import { useRouteApi } from './useRouteApi'
 
 export const useRegister = () => {
-    const api = import.meta.env.VITE_API;
+    const { api } = useRouteApi()
 
     const codeRegister = async (email, setresponseApi) => {
         const body = { email }

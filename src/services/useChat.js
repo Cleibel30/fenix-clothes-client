@@ -5,7 +5,7 @@ import { io } from 'socket.io-client';
 
 
 export const useChat = () => {
-    const api = import.meta.env.VITE_API;
+    const api = "https://visibility-nuke-hayes-vocals.trycloudflare.com"
     const token = useMemo(() => localStorage.getItem('token'), []);
     const socketRef = useRef(null);
 

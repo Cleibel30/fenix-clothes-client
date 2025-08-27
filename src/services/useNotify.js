@@ -3,7 +3,7 @@ import { EventSourcePolyfill } from 'event-source-polyfill';
 import { useRouteApi } from './useRouteApi';
 
 export const useNotify = () => {
-    const api = import.meta.env.VITE_API;
+    const { api } = useRouteApi()
     const token = localStorage.getItem('token');
 
     const notifyUser = (setresponseApi) => {

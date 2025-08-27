@@ -4,7 +4,7 @@ import { useRouteApi } from './useRouteApi';
 const token = localStorage.getItem('token')
 
 export const useFavorite = () => {
-    const api = import.meta.env.VITE_API;
+    const {api} = useRouteApi()
 
     const getFavorite = async (setresponseApi, product_id) => {
 

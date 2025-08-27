@@ -3,7 +3,7 @@ import axios from 'axios'
 import { useRouteApi } from './useRouteApi'
 
 export const useData = () => {
-    const api = import.meta.env.VITE_API;
+    const { api } = useRouteApi()
     const getData = async (setresponseApi) => {
         axios.get(`${api}/api/data/data`, { headers: { 'Content-Type': 'application/json' }, withCredentials: true })
             .then(response => {

@@ -5,7 +5,7 @@ import { useRouteApi } from './useRouteApi';
 const token = localStorage.getItem('token')
 
 export const useVoucher = () => {
-    const api = import.meta.env.VITE_API;
+    const { api } = useRouteApi()
     const sendVoucherInfo = async (setresponseApi, product_id, quantity, amount, dollar_rate, size) => {
 
         const body = {

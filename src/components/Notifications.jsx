@@ -30,7 +30,7 @@ export const Notifications = () => {
     }, [])
 
 
-    useEffect(() => {
+ /*    useEffect(() => {
 
         if (responseApi.length > 0 && responseApi[responseApi.length - 1].success && responseApi[responseApi.length - 1].data.length > 0) {
             const arrNotifications = responseApi[responseApi.length - 1].data
@@ -42,15 +42,15 @@ export const Notifications = () => {
         }
 
         getAll(setresponseVouchers)
-    }, [responseApi])
+    }, [responseApi]) */
 
 
-    useEffect(() => {
+   /*  useEffect(() => {
         if (seen) {
             activeNotify(setresponseActiveSeen)
             setnotifyActive(false)
         }
-    }, [seen])
+    }, [seen]) */
 
     const notify = () => {
         setactiveNotifyContent(!activeNotifyContent)
@@ -58,8 +58,8 @@ export const Notifications = () => {
         if (activeVouchers) setactiveVouchers(false)
         if (!activeVouchers) setactiveVouchers(true)
 
-        if (seen) setseen(false)
-        if (!seen) setseen(true)
+        /* if (seen) setseen(false)
+        if (!seen) setseen(true) */
     }
 
     const showVoucher = (item) => {
@@ -75,6 +75,8 @@ export const Notifications = () => {
 
     }
 
+    console.log(responseVouchers)
+
     return (
         <>
             <button id="btn-notify" className='button h-100  position-relative' onClick={notify} >
@@ -86,30 +88,10 @@ export const Notifications = () => {
                 <div className=" top-notify notify-content bg-light rounded shadow-sm">
 
                     <div className="d-flex flex-column gap-2">
-                        <div className="mb-2 p-2">
-                            <p className="nav_font fw-bold px-1 py-0 text-dark">Notificaciones</p>
-                            {(responseApi.length > 0 && responseApi[responseApi.length - 1].success && responseApi[responseApi.length - 1].data.length > 0) && (
-                                responseApi[responseApi.length - 1].data.map(item => (
-                                    <div className="min-size shadow-sm bg-light text-dark  p-1 rounded-1 d-flex flex-wrap justify-content-between mb-2"><span>{item.description}</span> <span className="size-date">{changeDate(item.date)}</span></div>
-                                ))
-                            )}
-
-                            {(responseApi.length > 0 && !responseApi[responseApi.length - 1].success) && (
-                                <div className="w-100 h-100 d-flex justify-content-center align-items-center">
-                                    <p className="nav_font text-dark">Sin notificaciones</p>
-                                </div>
-                            )}
-                            {(responseApi.length == 0) && (
-                                <div className="w-100 h-100 d-flex justify-content-center align-items-center">
-                                    <div className="spinner-border" role="status">
-                                        <span class="sr-only">Loading...</span>
-                                    </div>
-                                </div>
-                            )}
-                        </div>
+                        
 
 
-                        {(responseVouchers && responseVouchers.success) && (
+                        {(responseVouchers && responseVouchers.success) ? (
                             <>
                                 <div className="d-flex flex-column gap-1 p-2">
                                     <p className="nav_font fw-bold px-1 text-dark">Comprobantes</p>
@@ -120,7 +102,7 @@ export const Notifications = () => {
                                     ))}
                                 </div>
                             </>
-                        )}
+                        ) : <p className="nav_font fw-bold p-1 text-dark">Sin comprobantes</p>}
                     </div>
                 </div>
             )}

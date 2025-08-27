@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useRouteApi } from './useRouteApi';
 
 export const useCateogories = () => {
-    const api = import.meta.env.VITE_API;
+    const {api} = useRouteApi()
     
     const getCategoriesAll = async (setresponseApi) => {
 
