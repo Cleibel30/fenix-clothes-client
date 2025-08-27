@@ -1,0 +1,72 @@
+/* Inputs */
+
+form {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.input-cont {
+    width: 100%;
+    border-bottom: 2px solid #fff;
+    position: relative;
+}
+
+.label {
+    font-size: 14px;
+}
+
+.icon {
+
+    position: absolute;
+    left: 10px;
+    top: 45px;
+}
+
+.input {
+    width: 100%;
+    height: 55px;
+    padding-left: 50px;
+    background: none;
+    outline: none;
+    border: none;
+    color: #ffff;
+}
+
+.input::placeholder {
+    color: #ffffffad;
+}
+
+.show {
+    background: none;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
+    top: 45px;
+}
+
+/* Code */
+
+.code {
+    z-index: 5;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+}
+
+/* Fotos de formularios  */
+
+@media screen and (max-width: 993px) {
+    .banner {
+        display: none;
+    }
+
+    .button-form {
+        height: 40px;
+        font-size: 18px;
+    }
+}

@@ -1,0 +1,61 @@
+.zoom-img{
+    overflow: hidden;
+}
+
+.zoom-img img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: 300ms;
+}
+
+
+.zoom-img img:hover{
+    transform: scale(1.2);
+}
+
+.product-card .zoom-img{
+    width: 100%;
+    height: 350px;
+    overflow: hidden;
+}
+
+.product-card .zoom-img img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: 300ms;
+}
+
+.height-card {
+    height: 85%;
+}
+
+.img-card{
+    height: 150px;
+}
+
+.info{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.btn-buy{
+    background: radial-gradient(at 9.981435881194955% 27.820807686183603%, hsla(300, 100%, 50%, 1) 0%, hsla(300, 100%, 50%, 0) 100%), radial-gradient(at 63.407558057268595% 24.56599004363452%, hsla(304, 100%, 50%, 1) 0%, hsla(304, 100%, 50%, 0) 100%), radial-gradient(at 75.6416052177783% 10.501538697247103%, hsla(295.05882352941177, 100%, 50%, 1) 0%, hsla(295.05882352941177, 100%, 50%, 0) 100%), radial-gradient(at 13.149721524437641% 42.46007454519221%, hsla(335.99999999999994, 100%, 50%, 1) 0%, hsla(335.99999999999994, 100%, 50%, 0) 100%), radial-gradient(at 77.74917383664666% 0.6484631177622213%, hsla(327.05882352941177, 100%, 50%, 1) 0%, hsla(327.05882352941177, 100%, 50%, 0) 100%), radial-gradient(at 79.6204728699237% 9.859433736611079%, hsla(300, 100%, 50%, 1) 0%, hsla(300, 100%, 50%, 0) 100%), radial-gradient(at 92.74777199937377% 15.314826254747892%, hsla(304, 100%, 50%, 1) 0%, hsla(304, 100%, 50%, 0) 100%), radial-gradient(at 75.77837070118981% 2.3352958784177424%, hsla(295.05882352941177, 100%, 50%, 1) 0%, hsla(295.05882352941177, 100%, 50%, 0) 100%), radial-gradient(at 24.649144105241827% 75.90377129329187%, hsla(335.99999999999994, 100%, 50%, 1) 0%, hsla(335.99999999999994, 100%, 50%, 0) 100%), radial-gradient(at 59.79373969634465% 77.73909135101637%, hsla(327.05882352941177, 100%, 50%, 1) 0%, hsla(327.05882352941177, 100%, 50%, 0) 100%);
+}
+
+.info-h{
+    height: 70px;
+}
+
+.marginTopProducts{
+    margin-top: 70px;
+}
+
+.title-product{
+    font-size: 15px;
+}
+
