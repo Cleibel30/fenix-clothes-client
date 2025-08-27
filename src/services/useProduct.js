@@ -3,7 +3,8 @@ import { useRouteApi } from './useRouteApi';
 
 export const useProduct = () => {
 
-    const { api } = useRouteApi()
+    const api = import.meta.env.VITE_API;
+
     const getProductsHome = async (setresponseApi) => {
 
         axios.get(`${api}/api/product/getHome`, { headers: { 'Content-Type': 'application/json' }, withCredentials: true })

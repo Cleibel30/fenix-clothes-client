@@ -5,7 +5,7 @@ import { io } from 'socket.io-client';
 
 
 export const useChat = () => {
-    const api = "http://localhost:3000"
+    const api = import.meta.env.VITE_API;
     const token = useMemo(() => localStorage.getItem('token'), []);
     const socketRef = useRef(null);
 

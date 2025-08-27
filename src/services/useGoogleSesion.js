@@ -3,7 +3,7 @@ import axios from 'axios'
 import { useRouteApi } from './useRouteApi'
 
 export const useGoogleSesion = () => {
-  const { api } = useRouteApi()
+  const api = import.meta.env.VITE_API;
   
   const googleLogin = async (credentialResponse, setresponseApi) => {
     const body = { name: credentialResponse.name, email: credentialResponse.email }

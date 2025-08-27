@@ -5,7 +5,7 @@ import { jwtDecode } from 'jwt-decode'; // Para decodificar el ID Token
 import { useGoogleSesion } from '../services/useGoogleSesion';
 
 export const GoogleUser = () => {
-    const CLIENT_ID = "798835605636-s9233hk3ceuhsnus56778j9h6mfam0fr.apps.googleusercontent.com";
+    const CLIENT_ID = import.meta.env.VITE_GOOGLE;
     const { googleLogin } = useGoogleSesion();
     const [responseApi, setresponseApi] = useState(undefined)
 

@@ -5,6 +5,8 @@ import { useProduct } from "../services/useProduct";
 import { Message } from "../components/Message";
 
 export const Home = () => {
+  const api = import.meta.env.VITE_API;
+  
   const [responseApi, setresponseApi] = useState(undefined)
   const { getProductsAll } = useProduct()
 

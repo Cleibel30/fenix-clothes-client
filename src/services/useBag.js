@@ -4,7 +4,7 @@ import { useRouteApi } from './useRouteApi';
 const token = localStorage.getItem('token')
 
 export const useBag = () => {
-    const {api} = useRouteApi()
+    const api = import.meta.env.VITE_API;
 
     const getBag = async (setresponseApi, product_id) => {
 
