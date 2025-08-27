@@ -3,7 +3,8 @@ import { useRouteApi } from './useRouteApi';
 
 export const useProduct = () => {
 
-    const api = import.meta.env.VITE_API;
+    const {api} = useRouteApi()
+    
 
     const getProductsHome = async (setresponseApi) => {
 
