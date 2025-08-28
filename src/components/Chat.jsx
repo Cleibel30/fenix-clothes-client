@@ -74,7 +74,7 @@ export const Chat = () => {
       {!activeChat && (
         <button
           onClick={handleActiveMessage}
-          className="button button-chat shadow-sm position-relative marginTop text-dark bg-light fs-3"
+          className="button button-chat shadow-sm position-relative text-dark bg-light fs-3"
         >
           <i className="fa-regular fa-comment-dots"></i>
           {responseApi && responseApi.success && responseApi.data.seen_user && (

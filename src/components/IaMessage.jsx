@@ -57,7 +57,7 @@ export const IaMessage = ({ product_id }) => {
           />
         </div>
       )}
-      {responseApi && responseApi.success && response  && <button className="button bg-danger rounded p-1 min-size text-light mt-1" onClick={()=> setresponse(false)}>Quitar</button>}
+      {responseApi && responseApi.success && response  && <button className="button bg-danger rounded p-1 min-size text-light mt-1 index" onClick={()=> setresponse(false)}>Quitar</button>}
     </>
   );
 };

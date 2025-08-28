@@ -9,11 +9,11 @@ import { AlertSuccess } from "./AlertSuccess";
 import { AlertDanger } from "./AlertDanger";
 
 
-export const Product = ({ img, title, price, id, quantity, bag }) => {
+export const Product = ({ img, title, price, id }) => {
   const [activeAlertSuccess, setactiveAlertSuccess] = useState(false)
   const [activeAlertDanger, setactiveAlertDanger] = useState(false)
   const [responseApi, setresponseApi] = useState(undefined)
-  const { verifyQuantity } = useProduct()
+
   const { ref, inView } = useInView({
     threshold: 0.1,         // % visible para activar
     triggerOnce: true,      // Solo una vez
@@ -25,10 +25,7 @@ export const Product = ({ img, title, price, id, quantity, bag }) => {
     getDolar(setdolar)
   }, [])
 
-
-  const buyProduct = () => {
-    verifyQuantity(setresponseApi, id, quantity)
-  }
+  console.log(img, title, price, id)
 
   useEffect(() => {
     if (responseApi && !responseApi.success) {

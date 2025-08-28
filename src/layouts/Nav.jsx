@@ -12,20 +12,19 @@ import user from "../assets/icons/user.svg"
 import { Bag } from '../components/Bag'
 import { useFunctionEffects } from '../hooks/useFunctionEffects'
 import { GoogleUser } from '../components/GoogleUser';
-import { useBag } from '../services/useBag';
+import { useBagStore } from '../hooks/useBagStore';
+
 
 
 
 export const Nav = () => {
   const token = localStorage.getItem('token');
-  const { getBagAll } = useBag()
   const location = useLocation();
   const { getCategoriesAll } = useCateogories();
   const [responseApi, setresponseApi] = useState(undefined);
   const [dolar, setdolar] = useState(undefined)
-  const [responseBag, setresponseBag] = useState(undefined)
+  const [activeBag, setactiveBag] = useState(false)
   const { getDolar } = useDolar()
-
 
   const menuRef = useRef(null);
 
@@ -38,9 +37,9 @@ export const Nav = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const getBag = () => {
-    bagEfect()
-    getBagAll(setresponseBag)
+  const getBag = (e) => {
+
+    setactiveBag(true)
   }
 
   const changeCategories = (e) => {
@@ -101,7 +100,7 @@ export const Nav = () => {
 
             {token && (
               <>
-                <li><Notifications /></li>
+                {/* <li><Notifications /></li> */}
                 <li>
                   <button className='btn-icon'><img src={bag} onClick={getBag} alt="" /></button>
                 </li>
@@ -112,7 +111,9 @@ export const Nav = () => {
                       <button
                         onClick={() => {
                           localStorage.removeItem('token');
-                          window.location.href = '/cerrar-sesion';
+                          localStorage.removeItem('bolsa');
+                          localStorage.removeItem('favoritos');
+                          window.location.href = '/';
                         }}
                         className="d-block p-2  item special text-decoration-none text-dark button">Cerrar Sesión <i class="fs-5 ms-2 fa-solid fa-door-open"></i></button>
                     </li>
@@ -133,7 +134,7 @@ export const Nav = () => {
         </nav>
       </header>
       <Search></Search>
-      <Bag responseApi={responseBag}></Bag>
+      {activeBag && <Bag setactiveBag={setactiveBag}></Bag>}
       {activeShadow && <div className="shadow-cont" onClick={closedCont}></div>}
 
     </>

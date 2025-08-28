@@ -1,32 +1,36 @@
 import React, { useEffect, useRef } from 'react'
-import { useFunctionEffects } from '../hooks/useFunctionEffects'
-import { useBag } from '../services/useBag'
-import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useBagStore } from '../hooks/useBagStore'
+import { useRouteApi } from '../services/useRouteApi'
 
 
-export const Bag = ({ responseApi }) => {
 
-    const { closedBag } = useFunctionEffects()
+export const Bag = ({ setactiveBag }) => {
+    const { bolsa } = useBagStore()
+    const { api } = useRouteApi()
+
+    const closedBag = (event) => {
+        setactiveBag(false)
+    }
 
     const bagContent = useRef()
 
     return (
         <>
-            <div className="shadow shadow-bag" onClick={closedBag}></div>
-            <div className="bag-container" ref={bagContent}>
+            <div className="shadow bag-active" onClick={closedBag}></div>
+            <div className="bag-container bag-active" ref={bagContent}>
                 <button className='button closed' onClick={closedBag}><i class="fa-solid fa-xmark fs-1"></i></button>
                 <h2 className='text-dark cesta'>Cesta</h2>
                 <div className="container d-flex align-items-center flex-column gap-2 py-3 h-100">
-                    {responseApi && !responseApi.success && <p className='text-dark special fs-4'>Sin contenido</p>}
+                    {bolsa.length == 0 && <p className='text-dark special fs-4'>Sin contenido</p>}
                     <div className="container-fluid">
 
-                        {responseApi && responseApi.success && (
-                            responseApi.data.map(item => (
+                        {bolsa.length > 0 && (
+                            bolsa.map(item => (
                                 <Link to={`/producto/${item.product.product_id}`} className='text-decoration-none'>
                                     <div className="row mb-3">
                                         <div className="col-lg-4 col-md-12 col-sm-12">
-                                            <img className='w-100 h-bag' src={`http://localhost:3000/api/images/get_image/${item.product.images[0].image_url}`} alt="" />
+                                            <img className='w-100 h-bag' src={`${api}/api/images/get_image/${item.images[0].image_url}`} alt="" />
                                         </div>
                                         <div className="col-lg-8 col-md-12 col-sm-12">
                                             <p className='text-dark fw-bold min-size'>{item.product.title} </p>

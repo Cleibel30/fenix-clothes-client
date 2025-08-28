@@ -4,8 +4,8 @@ export const useFunctionEffects = () => {
     const [activeShadow, setactiveShadow] = useState(false)
     const bagEfect = (event) => {  
         const bagContainer = document.querySelector(".bag-container")
-        const shadow = document.querySelector(".shadow")
-        shadow.classList.add("bag-active")
+        /* const shadow = document.querySelector(".shadow")
+        shadow.classList.add("bag-active") */
         bagContainer.classList.add("bag-active")
 
     }

@@ -3,19 +3,20 @@ import { Link, useParams } from 'react-router-dom'
 import { useProduct } from '../services/useProduct'
 import { SliderProduct } from '../components/SliderProduct'
 import { useDolar } from "../services/useDolar"
-import { ButtonForm } from "../components/ButtonForm"
+
 import { IaMessage } from '../components/IaMessage'
-import { useFavorite } from '../services/useFavorite'
-import { useBag } from '../services/useBag'
+import { useFavoriteStorage } from '../hooks/useFavoriteStorage'
 import { Buy } from '../layouts/Buy'
 import { AlertSuccess } from '../components/AlertSuccess'
 import { AlertDanger } from '../components/AlertDanger'
 import { Sizes } from '../components/Sizes'
+import { useBagStore } from '../hooks/useBagStore'
 
 
 
 export const ShowProduct = () => {
   const [responseApi, setresponseApi] = useState(undefined)
+  const { toggleFavorite, isFavorite } = useFavoriteStorage()
   const { getProduct } = useProduct()
   const [responseApiBuy, setresponseApiBuy] = useState(undefined)
   const [activeAlertSuccess, setactiveAlertSuccess] = useState(false)
@@ -23,28 +24,23 @@ export const ShowProduct = () => {
   const [messageAlertDanger, setmessageAlertDanger] = useState("")
   const [sizeValue, setsizeValue] = useState("")
 
-  const { getBag, addDeleteBag, updateBag } = useBag()
-
-  const [bagData, setBagData] = useState(undefined)
-
-  const [bag, setbag] = useState(undefined)
-
   const { product_id } = useParams()
   const [dolar, setdolar] = useState(undefined)
   const { getDolar } = useDolar()
-  const { getFavorite, addDeleteFavorite } = useFavorite()
+
   const token = localStorage.getItem('token')
-  const [favoriteData, setFavoriteData] = useState(undefined)
-  const [favorite, setFavorite] = useState(undefined)
   const [count, setCount] = useState(0);
-  const [updateBagData, setupdateBagData] = useState(undefined)
+
+  const { toggleBag, editQuantity, isBag } = useBagStore()
+
 
   const favoriteRef = useRef(null)
   const bagRef = useRef(null)
 
   const handleAddDeleteFavorite = () => {
     if (token) {
-      addDeleteFavorite(setFavorite, product_id)
+      toggleFavorite(responseApi.data)
+
       if (favoriteRef.current) {
         favoriteRef.current.classList.toggle('text-danger')
         favoriteRef.current.classList.toggle('text-light')
@@ -58,7 +54,7 @@ export const ShowProduct = () => {
   const handleAddDeleteBag = () => {
     if (token) {
       if (count > 0) {
-        addDeleteBag(setbag, product_id, count)
+        toggleBag(responseApi.data, count)
         if (bagRef.current) {
           bagRef.current.classList.toggle('text-info')
           bagRef.current.classList.toggle('text-light')
@@ -100,25 +96,23 @@ export const ShowProduct = () => {
     }
   };
 
-  useEffect(() => {
-    if (token) updateBag(setupdateBagData, product_id, count)
-  }, [count])
+useEffect(() => {
+  if(responseApi && responseApi.success) editQuantity(responseApi.data, count)
+}, [count])
+
 
 
   useEffect(() => {
     getProduct(setresponseApi, product_id)
     getDolar(setdolar)
 
-    if (token) {
-      getFavorite(setFavoriteData, product_id)
-      getBag(setBagData, product_id)
-    }
 
   }, [])
 
   useEffect(() => {
-    if (bagData && bagData.success) setCount(bagData.data.quantity)
-  }, [bagData])
+    if (responseApi && responseApi.success) setCount(isBag(responseApi.data).quantity)
+  }, [responseApi])
+
 
   const buyProduct = (e) => {
     e.preventDefault()
@@ -146,8 +140,8 @@ export const ShowProduct = () => {
           </div>
           <div className="col-md-12 col-sm-12 col-lg-5 p-0 ps-lg-2 ">
             <div className="icons d-flex gap-2 justify-content-end">
-              <button ref={favoriteRef} className={`button ${(favoriteData && favoriteData.success) ? "text-danger" : "text-light"}`}><i onClick={handleAddDeleteFavorite} class="fa-solid fa-heart fs-4"></i></button>
-              <button ref={bagRef} className={`button ${(bagData && bagData.success) ? "text-info" : "text-light"}`} onClick={handleAddDeleteBag}><i class="fa-solid fa-bag-shopping fs-4 "></i></button>
+              <button ref={favoriteRef} className={`button ${(responseApi && responseApi.success && isFavorite(responseApi.data)) ? "text-danger" : "text-light"}`}><i onClick={handleAddDeleteFavorite} class="fa-solid fa-heart fs-4"></i></button>
+              <button ref={bagRef} className={`button ${(responseApi && responseApi.success && isBag(responseApi.data).active) ? "text-info" : "text-light"}`} onClick={handleAddDeleteBag}><i class="fa-solid fa-bag-shopping fs-4 "></i></button>
             </div>
             <h3 className="fs-3 fw-bold nav_font w-75">{(responseApi && responseApi.success) ? responseApi.data.product.title : <p className="placeholder-glow"> <span className="placeholder col-12"></span> </p>}</h3>
 
@@ -175,9 +169,9 @@ export const ShowProduct = () => {
                 </div>
               )}
 
-              <ButtonForm value="Comprar" />
+
               {responseApi && responseApi.success && (
-                <Link target='_blank' to={`https://api.whatsapp.com/send?phone=4163038585&text=${responseApi.data.product.title}: `} className="ws mt-2 text-center text-decoration-none text-light"><i class="fa-brands fa-whatsapp fs-3 pe-2"></i><span className='fw-bold'>Pídelo por WhatsApp</span></Link>
+                <Link target='_blank' to={`https://api.whatsapp.com/send?phone=4163038585&text=${responseApi.data.product.title}. ${sizeValue.length > 0 ? "Talla " + sizeValue : ""} ${count > 0 ? ("Cantidad " + count) : ""}`} className="ws mt-2 text-center text-decoration-none text-light"><i class="fa-brands fa-whatsapp fs-3 pe-2"></i><span className='fw-bold'>Pídelo por WhatsApp</span></Link>
 
               )}
 
