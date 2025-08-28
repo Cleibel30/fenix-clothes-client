@@ -11,7 +11,7 @@ export const Search = () => {
       return;
     }
 
-    window.location.href = `/busqueda?search=${search.trim()}`;
+    window.location.href = `/busqueda/${search.trim()}`;
   }
 
 

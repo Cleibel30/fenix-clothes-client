@@ -27,7 +27,7 @@ export const Home = () => {
 
       <Main />
 
-      <Products responseApi={responseApi} title="Algunos Productos" cont={4}></Products>
+      <Products responseApi={responseApi} title="Algunos Productos" cont={16}></Products>
 
     </>
   )

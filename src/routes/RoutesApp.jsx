@@ -60,7 +60,7 @@ function RoutesWithNav({ token }) {
         <Route path="/productos" element={<AllProducts />} />
         <Route path="/producto/:product_id" element={<ShowProduct />} />
         <Route path="/coleccion/:category_id" element={<CategoryProducts />} />
-        <Route path="/busqueda" element={<SearchProducts />} />
+        <Route path="/busqueda/:search" element={<SearchProducts />} />
         <Route path="/favoritos" element={<Favorites />} />
         <Route path="/bolsa" element={<Bag />} />
         {!token && <Route path="/recuperacion/:token" element={<RecoverPass />} />}
