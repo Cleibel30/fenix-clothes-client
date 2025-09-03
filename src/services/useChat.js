@@ -5,7 +5,7 @@ import { io } from 'socket.io-client';
 
 
 export const useChat = () => {
-    const api = "https://september-class-show-guidelines.trycloudflare.com"
+    const api = "https://investigate-utilities-handles-become.trycloudflare.com"
     const token = useMemo(() => localStorage.getItem('token'), []);
     const socketRef = useRef(null);
 
