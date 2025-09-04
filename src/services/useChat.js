@@ -3,7 +3,7 @@ import axios from 'axios'
 import { EventSourcePolyfill } from 'event-source-polyfill';
 import { io } from 'socket.io-client';
 
-https:"https://bowl-sees-corn-tire.trycloudflare.com"
+https:"https://serum-aurora-thickness-connectors.trycloudflare.com"
 export const useChat = () => {
     const api = "https://investigate-utilities-handles-become.trycloudflare.com"
     const token = useMemo(() => localStorage.getItem('token'), []);
